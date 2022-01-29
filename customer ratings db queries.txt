@@ -1,0 +1,27 @@
+create database Customer_ratings;
+use Customer_ratings;
+create table Customer_info(
+customer_key int not null primary key,
+cutomer_nmae char(50) not null,
+customer_residenial_country char(5) not null
+);
+create table countries_info(
+country_code varchar(10) not null primary key,
+country_name varchar(80)
+);
+create table Account_info(
+account_key varchar(150) primary key not null,
+customer_key int not null,
+account_open_date varchar(50) not null,
+foreign key(customer_key) references Customer_info(customer_key)
+);
+
+create table Transaction(
+transfer_key varchar(150) primary key not null,
+account_key varchar(150)  not null,
+transaction_amt double not null,
+transaction_type varchar(150) not null,
+country_code varchar(150) not null,
+transfer_date date not null,
+foreign key(account_key) references Account_info(account_key)
+);
